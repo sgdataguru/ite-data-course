@@ -2,6 +2,8 @@
 
 Default tool: **Claude**. Fall-backs: ChatGPT, GitHub Copilot. Substance is tool-agnostic.
 
+**Lab references updated:** labs now live as `labs/L##_*/starter/` + `solution/` folder pairs (per the revised Agent 3 prompt). Overlays below reference the new lab numbers.
+
 **Universal rules for every AI-assist exercise:**
 1. **Attempt first.** Sketch or attempt the task unaided (≥15 min) before prompting.
 2. **Diff.** Compare AI output against your attempt.
