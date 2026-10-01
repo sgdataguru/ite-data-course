@@ -1,0 +1,28 @@
+# Design and Build the Webpage
+
+Create the webpage requested by the user. Treat the work as two connected steps: first define a simple, polished visual design, then implement that same design in the existing codebase.
+
+## 1. Design before coding
+
+- Identify the page's audience, primary goal, main user action, and essential content.
+- Establish a clear hierarchy: page title, brief supporting description, primary action, secondary actions, and content sections.
+- Choose a calm, accessible color palette, readable typography, consistent spacing, and a restrained use of borders, shadows, and icons.
+- Keep the composition uncluttered with generous whitespace and obvious grouping.
+- Make the primary action visually prominent while keeping secondary actions quiet.
+- Plan mobile, tablet, and desktop layouts before implementation, including how navigation, cards, forms, and columns adapt.
+- Plan appropriate empty, loading, success, error, disabled, hover, focus, and active states for the page's interactions.
+
+## 2. Implement the design
+
+- Inspect the existing project structure, framework, styling system, and reusable components before editing.
+- Use the existing conventions and dependencies whenever possible; do not add unrelated features or dependencies.
+- Implement the planned layout and visual system faithfully rather than improvising a different design during coding.
+- Use semantic HTML and accessible controls with labels, meaningful link text, keyboard-visible focus states, sufficient contrast, and touch-friendly target sizes.
+- Use realistic, concise content instead of filler text. Provide meaningful alternative text for informative images and mark decorative images appropriately.
+- Make the layout responsive without requiring horizontal scrolling on normal content.
+- Keep spacing, alignment, typography, radii, colors, and interaction states consistent across the page.
+- Validate the primary user flow, responsive behavior, accessibility basics, and console/runtime errors after implementation.
+
+## Quality bar
+
+The result should feel intentional, clean, neat, and approachable to a first-time visitor. A user should immediately understand what the page is for, what to do next, and what happened after completing the main action. After coding, briefly summarize the design decisions and files changed.

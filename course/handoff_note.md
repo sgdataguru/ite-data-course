@@ -1,0 +1,3 @@
+# Handoff note (Agent 6 → Instructor)
+
+To update this portal, edit the `const COURSE = {...}` JSON object at the top of the `<script>` block in `course_portal.html` — all content (schedule, competencies, AI-assist ledger, rubrics, prompt library, datasets, FAQ) lives there as data, not layout; the page renders itself from it. Open the file directly in any browser (zero network required), toggle "Instructor view" for marker materials, and use "Download all materials" to print the entire portal to PDF. See GAPS.md for items that still need authoring (actual .ipynb files, test datasets, library version pinning).

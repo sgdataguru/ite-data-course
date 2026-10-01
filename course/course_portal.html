@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DE5002FP — Data Preparation for Machine Learning</title>
+<style>
+:root{
+  --bg:#f7f8fa;--card:#ffffff;--ink:#1a2332;--muted:#5a6a7e;--line:#e3e8ef;
+  --c1:#2563eb;--c2:#d97706;--c3:#059669;--rev:#7c3aed;--ai:#db2777;
+  --accent:#0f4c81;--chipbg:#eef2f7;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#10151d;--card:#1a2230;--ink:#e8edf4;--muted:#9aa8ba;--line:#2a3547;--chipbg:#232e42;}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6}
+a{color:var(--c1)}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:1.2rem 1.5rem;position:sticky;top:0;z-index:10}
+header h1{font-size:1.25rem}
+header .sub{color:var(--muted);font-size:.85rem}
+nav{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+nav button{background:var(--chipbg);border:1px solid var(--line);color:var(--ink);padding:.35rem .8rem;border-radius:999px;cursor:pointer;font-size:.85rem}
+nav button[aria-current="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+main{max-width:1080px;margin:0 auto;padding:1.5rem}
+section[hidden]{display:none}
+h2{font-size:1.35rem;margin-bottom:.6rem}
+h3{font-size:1.05rem;margin:1.2rem 0 .4rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin:.6rem 0}
+.grid{display:grid;gap:.8rem}
+@media(min-width:760px){.grid.cols3{grid-template-columns:repeat(3,1fr)}.grid.cols2{grid-template-columns:repeat(2,1fr)}}
+.chip{display:inline-block;padding:.1rem .55rem;border-radius:999px;font-size:.75rem;font-weight:600;background:var(--chipbg);border:1px solid var(--line)}
+.chip.C1{color:var(--c1);border-color:var(--c1)}.chip.C2{color:var(--c2);border-color:var(--c2)}
+.chip.C3{color:var(--c3);border-color:var(--c3)}.chip.revision{color:var(--rev);border-color:var(--rev)}
+.chip.AI{color:var(--ai);border-color:var(--ai)}
+table{width:100%;border-collapse:collapse;margin:.6rem 0;background:var(--card);font-size:.88rem}
+th,td{border:1px solid var(--line);padding:.45rem .6rem;text-align:left;vertical-align:top}
+thead th{position:sticky;top:56px;background:var(--chipbg)}
+.donut{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.donut .legend{font-size:.85rem}
+.bar{height:22px;border-radius:6px;overflow:hidden;display:flex;margin:.4rem 0}
+.bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;font-weight:600}
+.gantt{display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin:.6rem 0}
+.gantt div{height:14px;border-radius:3px}
+details{margin:.4rem 0}
+details summary{cursor:pointer;font-weight:600;padding:.4rem 0}
+pre{background:var(--chipbg);border:1px solid var(--line);border-radius:8px;padding:.8rem;overflow-x:auto;font-size:.8rem}
+.instructor-only{display:none}
+body.instructor .instructor-only{display:block}
+.toggle{float:right;background:var(--chipbg);border:1px solid var(--line);color:var(--ink);padding:.3rem .7rem;border-radius:8px;cursor:pointer;font-size:.8rem}
+footer{max-width:1080px;margin:0 auto;padding:1rem 1.5rem;color:var(--muted);font-size:.8rem}
+@media print{nav,.toggle{display:none}section[hidden]{display:block!important}body{background:#fff}}
+</style>
+</head>
+<body>
+<header>
+  <button class="toggle" id="instrToggle" aria-pressed="false">Instructor view: off</button>
+  <h1>DE5002FP — Data Preparation for Machine Learning</h1>
+  <div class="sub">80 hours · 3 months · 20 T / 60 P · AI-Assist 33 hrs (41%) · Classroom + Lab (Python / Jupyter)</div>
+  <nav aria-label="Sections" id="nav"></nav>
+</header>
+<main id="main"></main>
+<footer>DE5002FP course portal — self-contained, no network required. Print to PDF for full materials.</footer>
+<script>
+const COURSE = {
+  meta:{code:"DE5002FP",title:"Data Preparation for Machine Learning",hours:80,theory:20,practical:60,aiAssist:33,weeks:12},
+  competencies:[
+    {id:"C1",name:"Prepare Data for Machine Learning Models",t:5,p:12,ai:5.5,
+     outcomes:["Convert raw data into numerical and categorical formats suitable for modelling","Scale and normalise numerical features appropriately","Encode categorical variables using suitable techniques","Handle imbalanced datasets to improve model performance","Prepare data according to specific algorithm requirements"],
+     theory:["S01 Data Types & Conversion","S03 Scaling vs Normalisation vs Standardisation","S05 Categorical Encoding","S07 Class Imbalance & Algorithm-Specific Prep"],
+     practical:["Lab 1 Load & Fix a Messy Dataset","Lab 2 Scaling Pipelines","Lab 3 Encoding Categorical Data","Lab 4 Imbalance & Algorithm-Aware Prep","Lab 5 C1 Consolidation Mini-Project","Lab 5B Algorithm-Aware Prep Clinic"]},
+    {id:"C2",name:"Identify and Mitigate Bias in Prepared Datasets",t:5,p:12,ai:4.5,
+     outcomes:["Analyse datasets for potential sources of bias","Detect imbalances in sensitive or protected attributes","Report findings on identified bias risks clearly","Suggest basic mitigation strategies for detected bias","Document bias assessment results for traceability"],
+     theory:["S10 Sources of Bias in Datasets","S12 Fairness Metrics","S14 Sensitive Attributes & Mitigation Strategies","S16 Bias Documentation for Traceability"],
+     practical:["Lab 6 Dataset Bias Audit","Lab 7 Computing Fairness Metrics","Lab 8 Applying Mitigations","Lab 9 1-Page Bias Assessment Report","Lab 10 C2 Consolidation on Two Real Datasets","Lab 10B Bias Report Peer Review Clinic"]},
+    {id:"C3",name:"Split Datasets and Apply AI Enhancements for ML Readiness",t:6,p:16,ai:14,
+     outcomes:["Perform train-test-validation splits using best practices","Apply cross-validation techniques to improve reliability","Enhance datasets using AI-based augmentation methods","Generate synthetic data when appropriate","Verify overall readiness of the final prepared dataset","Use AI tools to generate, refine, and validate data preparation code (vibe coding)","Evaluate and improve AI-generated outputs for correctness and efficiency"],
+     theory:["S19 Splits & Leakage","S21 Cross-Validation Methods","S23 Augmentation & Synthetic Data","S26 Vibe Coding Principles","S28 Risks of AI-Generated Code","S30 Prompt Design"],
+     practical:["Lab 11 Splits in Practice","Lab 12 KFold/Stratified/TimeSeries","Lab 13 Augmentation Tabular + Image","Lab 14 Synthetic Data SMOTE + GenAI","Lab 15 Vibe Coding Data Prep","Lab 16 Critiquing & Fixing AI Output","Lab 17 Prompt Library Build","Lab 18 Final Dataset QA"]}
+  ],
+  schedule:[
+    {week:1,sessions:"S01–S04",comp:"C1",topics:"Data types; messy-data lab; scaling theory & lab",hrs:6,ai:2},
+    {week:2,sessions:"S05–S09",comp:"C1",topics:"Encoding; imbalance; algorithm-specific prep; C1 mini-project",hrs:9,ai:3},
+    {week:3,sessions:"S09B,S10–S13",comp:"C1→C2",topics:"Algorithm clinic; bias sources; audit lab; fairness metrics",hrs:8,ai:2.5},
+    {week:4,sessions:"S14–S18",comp:"C2",topics:"Sensitive attributes; mitigation; documentation; bias report; consolidation",hrs:8,ai:3},
+    {week:5,sessions:"S18B,S19–S22",comp:"C2→C3",topics:"Peer clinic; splits & leakage; cross-validation",hrs:8,ai:2.5},
+    {week:6,sessions:"S23–S25",comp:"C3",topics:"Augmentation & synthetic data theory; labs 13–14",hrs:5,ai:2.5},
+    {week:7,sessions:"S26–S29",comp:"C3",topics:"Vibe coding; AI risks; critique & fix lab",hrs:7,ai:5.5},
+    {week:8,sessions:"S30–S32",comp:"C3",topics:"Prompt design; prompt library; final QA",hrs:5,ai:4},
+    {week:9,sessions:"S33–S35",comp:"Revision",topics:"Consolidation review & lab; mock walkthrough",hrs:5,ai:1.5},
+    {week:10,sessions:"S36–S38",comp:"Assessment",topics:"Mock test; Practical Test (50%); Project Studio 1 (25%)",hrs:8,ai:2},
+    {week:11,sessions:"S39–S40",comp:"Project",topics:"Project Studio 2 (50%); Studio 3 (75%)",hrs:8,ai:4},
+    {week:12,sessions:"S41",comp:"Project",topics:"Project Studio 4 (100%) & presentations",hrs:3,ai:1.5}
+  ],
+  aiAssist:{
+    total:33,byComp:{C1:5.5,C2:4.5,C3:14,revision:9},
+    miniModules:[
+      {id:"M1",name:"Prompting for data work",hrs:2,where:"S30/S31",desc:"Role, context, schema, constraints, examples; anti-patterns; iteration."},
+      {id:"M2",name:"Verifying AI-generated code",hrs:2,where:"S28/S29",desc:"Seeds, deterministic tests, diffing, test harnesses, spot-checks."},
+      {id:"M3",name:"Risks, licensing & data leakage",hrs:2,where:"S28/S32",desc:"Never-paste list; enterprise-safe patterns; provenance; hallucinated APIs; licence contamination."}
+    ],
+    rules:["Attempt first — every AI exercise requires an unaided attempt before prompting","Verify — 6-point checklist: runs, seeded, leakage-free, spot-checked, APIs real, constraints respected","Reflect — 3–5 lines: what the AI got right, wrong, what you changed","Never paste raw personal data — schema and statistics, not rows"],
+    tools:[["Claude","Approved (default)"],["ChatGPT","Approved (fall-back)"],["GitHub Copilot","Approved (fall-back)"],["Cursor","Approved (fall-back)"]],
+    promptLibrary:[
+      ["Cleaning","Convert column [X] from [format] to [type], handling [edge cases]; show a plausibility validation check."],
+      ["Cleaning","This cast failed with [error]. Explain the cause and give a robust fix that doesn't silently drop values."],
+      ["Scaling","Given this distribution summary [stats], recommend a scaler for [algorithm] and justify in 3 sentences."],
+      ["Scaling","Write a leakage-free sklearn Pipeline that standardises [columns], fitted only on training folds."],
+      ["Encoding","Column [X] is [nominal/ordinal] with [N] values, feeding a [model]. Recommend and implement an encoding."],
+      ["Encoding","Write fold-safe target encoding for [column] within a cross-validation loop."],
+      ["Imbalance","Write an imbalanced-learn Pipeline so SMOTE applies only to training folds. Evaluate with recall and F1."],
+      ["Imbalance","My dataset is [ratio] imbalanced with [N] rows. Argue undersampling vs SMOTE in 5 sentences."],
+      ["Bias","List plausible bias sources for this dataset description [...]. State the evidence you would look for."],
+      ["Fairness","Compute demographic parity, equalised odds, and predictive parity from [table]. Interpret each gap."],
+      ["Fairness","Explain reweighing for this group-outcome table [table], and compute the weights."],
+      ["Splitting","Write seeded 70/15/15 splitting plus a leakage-free pipeline. Assert no test rows in training."],
+      ["CV","Choose a cross-validation strategy for [data] and implement it with the scaler inside the loop."],
+      ["Synthetic","Generate [N] synthetic rows matching schema [schema] and stats [stats]. Then critique your output for plausibility."],
+      ["QA","Write a data-readiness checklist runner: types, leakage, balance, drift, domain constraints."],
+      ["QA","Review this AI-generated script for hallucinated APIs, leakage, and silent bugs. [code]"]
+    ],
+    failureGallery:[
+      ["SMOTE before split","AI resamples the whole dataset before splitting — the test set becomes synthetic-balanced; recall is a beautiful lie. Fix: imblearn Pipeline, resample training folds only."],
+      ["Silent coercion","AI uses errors='ignore' on a price cast — bad values survive as strings. Fix: coerce, then assert dtype and range."],
+      ["Label-encoding nominal data","AI label-encodes town (26 nominal values), inventing an order. Fix: one-hot with rare-category grouping."],
+      ["Hallucinated API","AI invents a TargetEncoder signature that doesn't exist in the installed sklearn. Fix: check docs, pin versions."],
+      ["Fabricated provenance","AI invents datasheet details (collection dates, sources). Fix: only document what you can verify."]
+    ]
+  },
+  assessment:{
+    practicalTest:{name:"Practical Test",weight:"50%",dur:"2 hrs",covers:"C1 + C2",ai:"Prohibited (invigilated)",
+      scenario:"Junior data analyst at a Singapore fintech; loan_prep_test.csv (~8,000 rows) with string numerics, mixed dates, missing values, 92:8 imbalance, sensitive attributes, one leaky feature.",
+      deliverable:"One Jupyter notebook from the provided template.",
+      rubric:[["Data Conversion Accuracy",20],["Feature Scaling & Normalisation",15],["Categorical Encoding Techniques",15],["Handling Imbalanced Data",15],["Bias Detection & Analysis",20],["Appropriate Application of Mitigation Strategies",15]],
+      bands:"80+ distinction-ready · 60–79 competent · 40–59 partial · <40 not yet competent (retest eligible, CP Type 1)"},
+    project:{name:"End-to-End Data Prep Project",weight:"40%",dur:"15 hrs",covers:"C1→C3",ai:"REQUIRED (documented GenAI use)",
+      options:["A — HDB Resale Fairness Audit","B — SME Loan Approval Prep","C — Hospital Readmission Prep"],
+      milestones:[["25% (Wk 10)","Cleaned + typed dataset, prep-decisions table"],["50% (Wk 11)","1-page bias report with metrics + one mitigation"],["75% (Wk 11)","Leakage-free splits + CV; augmentation/synthetic applied"],["100% (Wk 12)","Final QA checklist, AI-usage ledger, 5-slide deck, submission"]],
+      artefacts:"Cleaned dataset · Jupyter notebook · 1-page bias report · 1-page AI-usage reflection · 5-slide deck",
+      rubric:[["Data Preparation",20],["Bias Detection & Mitigation",20],["Dataset Splitting & Enhancement",15],["Dataset Enhancement (augmentation/synthetic)",15],["Use of GenAI to automate data preparation",15],["Data Analysis & Visualisation",15]]},
+    behavioural:{name:"Behavioural & Attitudinal Attributes",weight:"10%",
+      rubric:[["Attendance & punctuality",3],["Lab conduct & safety (exit tickets, environment hygiene)",3],["Peer collaboration (clinics)",2],["Honest AI-usage disclosure",2]]},
+    mock:{name:"Mock Practical Test",dur:"2 hrs",ai:"Prohibited",
+      desc:"Parallel form: telecom_churn_prep_mock.csv (~7,000 rows), same six issue classes, same rubric and timing. Feedback only — not graded."}
+  },
+  resources:{
+    datasets:[["HDB Resale Prices","data.gov.sg","SG Open Data Licence","Labs 1–5, 11, 13, 15; Project A"],["UCI Adult Income","archive.ics.uci.edu","UCI open","Labs 6–10"],["German Credit / Lending","UCI/Kaggle","Open (verify)","Lab 10; Project B"],["Energy Demand (time series)","UCI/Kaggle","Open","Lab 12"],["Fashion-MNIST subset","GitHub (zalandoresearch)","MIT","Lab 13"],["Synthetic fraud dataset","Generated in-lab","N/A","Labs 4, 12"],["Hospital readmission (synthetic)","Generated","N/A","Project C"]],
+    readings:[["S01 Data types","Python for Data Analysis (McKinney) Ch.5","pandas dtypes docs"],["S03 Scaling","sklearn Preprocessing guide","Standardisation vs normalisation explainer"],["S05 Encoding","sklearn Encoding guide","Categorical encoding blog"],["S07 Imbalance","imbalanced-learn docs","SMOTE paper (Chawla 2002)"],["S10 Bias sources","Datasheets for Datasets (Gebru 2018)","Google AI fairness blog"],["S12 Fairness metrics","Fairness and ML (Barocas et al.) Ch.2","fairlearn quickstart"],["S14 Mitigation","fairlearn mitigation docs","AIF360 reweighing"],["S16 Documentation","Datasheets for Datasets","Model Cards (Mitchell 2019)"],["S19 Splits & leakage","sklearn model evaluation","Kaggle Learn: Data Leakage"],["S21 CV","sklearn CV strategies","k-fold explainer"],["S23 Augmentation","Deep Learning (Goodfellow) Ch.7","Tabular GAN survey"],["S26 Vibe coding","Anthropic/OpenAI code-gen best practices","Simon Willison vibe-coding essays"],["S28 AI risks","OWASP Top 10 for LLMs","LLMs for code survey (2023)"],["S30 Prompt design","OpenAI/Anthropic prompt guides","The Prompt Report (2024)"]],
+    env:"Python 3.11+ · Jupyter · pandas, scikit-learn, imbalanced-learn, fairlearn, matplotlib. All datasets distributed via LMS before Week 1 (no network dependency in labs/tests).",
+    faq:[["Is AI allowed in the practical test?","No — invigilated and AI-free. The project requires documented AI use."],["What if I fail the practical test?","Retest pathway per CP Type 1 policy; the mock in Week 10 is your rehearsal."],["Do I need ML background?","No — Python and pandas basics only. The module builds everything else."]]
+  },
+  instructor:{
+    speakerNotes:"Every theory session has a slide outline with speaker notes in theory/S##_concept.md files (Agent 2 pack).",
+    solutions:"Solution notebooks for Labs 1–18 are in the Agent 3 lab pack (practicals/lab_pack.md, 'Solution highlights' per lab).",
+    markingKeys:"Practical test marker instructions, score bands, and mock marking key are in assessment/assessment_pack.md (Agent 5).",
+    ledgerAudit:"AI-assist ledger (33 hrs) is auditable in ai_assist/ai_assist_ledger.md (Agent 4)."
+  }
+};
+
+const PAGES=["Home","Schedule","C1","C2","C3","AI-Assist Hub","Assessment","Resources"];
+const nav=document.getElementById('nav'),main=document.getElementById('main');
+let current="Home";
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function buildNav(){
+  nav.innerHTML='';
+  PAGES.forEach(p=>{const b=document.createElement('button');b.textContent=p;b.setAttribute('aria-current',p===current);b.onclick=()=>{current=p;render();buildNav();window.scrollTo(0,0)};nav.appendChild(b)});
+}
+function donut(){
+  const t=COURSE.meta.theory,p=COURSE.meta.practical;
+  return `<div class="donut"><svg width="140" height="140" viewBox="0 0 42 42" role="img" aria-label="20 theory, 60 practical hours">
+  <circle cx="21" cy="21" r="16" fill="none" stroke="#2563eb" stroke-width="7" stroke-dasharray="10 30" transform="rotate(-90 21 21)"/>
+  <circle cx="21" cy="21" r="16" fill="none" stroke="#059669" stroke-width="7" stroke-dasharray="30 10" stroke-dashoffset="-10" transform="rotate(-90 21 21)"/>
+  <text x="21" y="22" text-anchor="middle" font-size="7" fill="currentColor">80h</text></svg>
+  <div class="legend"><span class="chip C1">Theory 20h</span> <span class="chip C3">Practical 60h</span><br><span class="chip AI">AI-Assist overlay: 33h (41%)</span></div></div>`;
+}
+function gantt(){
+  const colors={C1:"var(--c1)",C2:"var(--c2)",C3:"var(--c3)",Revision:"var(--rev)",Assessment:"var(--rev)",Project:"var(--rev)"};
+  return `<div class="gantt" role="img" aria-label="12-week Gantt strip">`+COURSE.schedule.map(w=>`<div title="Week ${w.week}: ${esc(w.topics)}" style="background:${colors[w.comp]||'var(--rev)'}"></div>`).join('')+`</div>
+  <div style="font-size:.75rem;color:var(--muted)"><span class="chip C1">C1</span> <span class="chip C2">C2</span> <span class="chip C3">C3</span> <span class="chip revision">Revision/Project/Assessment</span></div>`;
+}
+function compPage(c){
+  return `<h2>${c.id} — ${esc(c.name)}</h2>
+  <div class="card"><strong>${c.t} hrs Theory · ${c.p} hrs Practical · ${c.ai} hrs AI-assist</strong></div>
+  <h3>Learning outcomes</h3><div class="card"><ul>${c.outcomes.map(o=>`<li>${esc(o)}</li>`).join('')}</ul></div>
+  <h3>Theory sessions</h3><div class="card"><ul>${c.theory.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div>
+  <h3>Practical sessions</h3><div class="card"><ul>${c.practical.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></div>
+  <div class="card instructor-only"><strong>Instructor:</strong> concept notes, slides, quizzes in <code>theory/</code>; lab briefs, starters, solutions, exit tickets in <code>practicals/</code>; AI overlays in <code>ai_assist/</code>.</div>`;
+}
+function render(){
+  const m=COURSE.meta;let h='';
+  if(current==="Home"){
+    h=`<h2>${esc(m.title)}</h2>
+    <div class="card"><p><strong>${m.code}</strong> · ${m.hours} hours · ${m.weeks} weeks · 20 T / 60 P · AI-Assist ${COURSE.aiAssist.total} hrs (41%)</p>
+    <p style="color:var(--muted)">Polytechnic / Higher Nitec / early-career learners. Python + pandas basics assumed, no prior ML. Exit role: junior data engineer / analyst who can safely use AI assistants.</p></div>
+    ${donut()}${gantt()}
+    <div class="grid cols3">`+COURSE.competencies.map(c=>`<div class="card"><span class="chip ${c.id}">${c.id}</span><h3>${esc(c.name)}</h3><p style="font-size:.85rem;color:var(--muted)">${c.t}T / ${c.p}P · ${c.ai}h AI-assist</p><p style="font-size:.85rem">${esc(c.outcomes[0])} …</p></div>`).join('')+`</div>
+    <div class="card"><strong>Assessment:</strong> Practical Test 50% (2h, C1+C2) · Project 40% (15h, C1→C3, GenAI required) · Behavioural 10%.</div>`;
+  } else if(current==="Schedule"){
+    h=`<h2>12-Week Schedule</h2>${gantt()}
+    <table><thead><tr><th>Week</th><th>Sessions</th><th>Competency</th><th>Topics</th><th>Hrs</th><th>AI</th></tr></thead><tbody>`+
+    COURSE.schedule.map(w=>`<tr><td>${w.week}</td><td>${esc(w.sessions)}</td><td><span class="chip ${w.comp.includes('→')?'revision':esc(w.comp)}">${esc(w.comp)}</span></td><td>${esc(w.topics)}</td><td>${w.hrs}</td><td>${w.ai||'—'}</td></tr>`).join('')+
+    `</tbody></table>
+    <div class="card"><strong>Reconciliation:</strong> 80 total = 20 T + 60 P · C1 5/12 · C2 5/12 · C3 6/16 · Revision 4/20 · AI-assist 33h ≥ 32h target.</div>`;
+  } else if(["C1","C2","C3"].includes(current)){
+    h=compPage(COURSE.competencies.find(c=>c.id===current));
+  } else if(current==="AI-Assist Hub"){
+    const a=COURSE.aiAssist;
+    h=`<h2>AI-Assist Hub</h2>
+    <div class="card"><strong>${a.total} hours (41% of the module) — the 40% rule, audited.</strong>
+    <div class="bar"><span style="width:41%;background:var(--ai)">AI-assist 33h</span><span style="width:59%;background:var(--muted)">Conventional 47h</span></div>
+    <table><tr><th>C1</th><th>C2</th><th>C3</th><th>Revision/Project</th></tr><tr><td>${a.byComp.C1}h</td><td>${a.byComp.C2}h</td><td>${a.byComp.C3}h</td><td>${a.byComp.revision}h</td></tr></table></div>
+    <h3>Mini-modules</h3><div class="grid cols3">`+a.miniModules.map(mm=>`<div class="card"><strong>${mm.id} — ${esc(mm.name)}</strong> (${mm.hrs}h, ${esc(mm.where)})<p style="font-size:.85rem">${esc(mm.desc)}</p></div>`).join('')+`</div>
+    <h3>Ground rules</h3><div class="card"><ul>${a.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>
+    <h3>Approved tools</h3><div class="card"><table><tbody>${a.tools.map(t=>`<tr><td>${esc(t[0])}</td><td>${esc(t[1])}</td></tr>`).join('')}</tbody></table></div>
+    <h3>Prompt library</h3><div class="card"><input id="plSearch" type="search" placeholder="Search prompts…" style="width:100%;padding:.4rem;margin-bottom:.5rem" oninput="filterPrompts(this.value)">
+    <table id="plTable"><thead><tr><th>Topic</th><th>Prompt</th></tr></thead><tbody>${a.promptLibrary.map((p,i)=>`<tr data-t="${esc(p[0])} ${esc(p[1])}"><td>${esc(p[0])}</td><td>${esc(p[1])}</td></tr>`).join('')}</tbody></table></div>
+    <h3>Failure gallery</h3>${a.failureGallery.map(f=>`<details class="card"><summary>${esc(f[0])}</summary><p style="font-size:.88rem">${esc(f[1])}</p></details>`).join('')}`;
+  } else if(current==="Assessment"){
+    const A=COURSE.assessment;
+    const rubTable=r=>`<table><thead><tr><th>Criterion</th><th>Marks</th></tr></thead><tbody>${r.map(x=>`<tr><td>${esc(x[0])}</td><td>${x[1]}</td></tr>`).join('')}</tbody></table>`;
+    h=`<h2>Assessment (100%)</h2>
+    <div class="card"><h3>${esc(A.practicalTest.name)} — ${A.practicalTest.weight} (${A.practicalTest.dur}, ${A.practicalTest.covers})</h3>
+    <p style="font-size:.9rem">${esc(A.practicalTest.scenario)}</p><p style="font-size:.9rem"><strong>Deliverable:</strong> ${esc(A.practicalTest.deliverable)} · <strong>AI:</strong> ${A.practicalTest.ai}</p>
+    ${rubTable(A.practicalTest.rubric)}<p style="font-size:.85rem"><strong>Bands:</strong> ${esc(A.practicalTest.bands)}</p></div>
+    <div class="card"><h3>${esc(A.project.name)} — ${A.project.weight} (${A.project.dur}, ${A.project.covers})</h3>
+    <p style="font-size:.9rem"><strong>Options:</strong> ${A.project.options.map(esc).join(' · ')}</p>
+    <p style="font-size:.9rem"><strong>Artefacts:</strong> ${esc(A.project.artefacts)} · <strong>AI:</strong> ${A.project.ai}</p>
+    <table><thead><tr><th>Milestone</th><th>Gate</th></tr></thead><tbody>${A.project.milestones.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td></tr>`).join('')}</tbody></table>
+    ${rubTable(A.project.rubric)}</div>
+    <div class="card"><h3>${esc(A.behavioural.name)} — ${A.behavioural.weight}</h3>${rubTable(A.behavioural.rubric)}</div>
+    <div class="card"><h3>${esc(A.mock.name)} (${A.mock.dur})</h3><p style="font-size:.9rem">${esc(A.mock.desc)} · <strong>AI:</strong> ${A.mock.ai}</p></div>
+    <div class="card"><h3>AI-usage policy</h3><table><tr><th>Assessment</th><th>AI tools</th></tr><tr><td>Practical Test</td><td>Prohibited</td></tr><tr><td>Mock Test</td><td>Prohibited</td></tr><tr><td>Project</td><td>Required — ledger + reflection</td></tr><tr><td>Labs</td><td>Permitted per overlay rules</td></tr></table></div>
+    <div class="card instructor-only"><strong>Instructor:</strong> ${esc(COURSE.instructor.markingKeys)}</div>`;
+  } else if(current==="Resources"){
+    const R=COURSE.resources;
+    h=`<h2>Resources</h2>
+    <h3>Datasets</h3><table><thead><tr><th>Dataset</th><th>Source</th><th>Licence</th><th>Used in</th></tr></thead><tbody>${R.datasets.map(d=>`<tr><td>${esc(d[0])}</td><td>${esc(d[1])}</td><td>${esc(d[2])}</td><td>${esc(d[3])}</td></tr>`).join('')}</tbody></table>
+    <h3>Reading list</h3><table><thead><tr><th>Session</th><th>Primary</th><th>Secondary</th></tr></thead><tbody>${R.readings.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('')}</tbody></table>
+    <h3>Environment</h3><div class="card">${esc(R.env)}</div>
+    <h3>FAQ</h3>${R.faq.map(f=>`<details class="card"><summary>${esc(f[0])}</summary><p style="font-size:.9rem">${esc(f[1])}</p></details>`).join('')}
+    <div class="card instructor-only"><strong>Instructor:</strong> ${esc(COURSE.instructor.speakerNotes)} ${esc(COURSE.instructor.solutions)}</div>`;
+  }
+  h+=`<div class="card" style="margin-top:1.5rem"><button onclick="window.print()" style="padding:.5rem 1rem;border-radius:8px;border:1px solid var(--line);background:var(--accent);color:#fff;cursor:pointer">Download all materials (print to PDF)</button></div>`;
+  main.innerHTML=h;
+}
+function filterPrompts(q){document.querySelectorAll('#plTable tbody tr').forEach(tr=>{tr.style.display=tr.dataset.t.toLowerCase().includes(q.toLowerCase())?'':'none'})}
+const tog=document.getElementById('instrToggle');
+tog.onclick=()=>{document.body.classList.toggle('instructor');const on=document.body.classList.contains('instructor');tog.textContent=`Instructor view: ${on?'on':'off'}`;tog.setAttribute('aria-pressed',on)};
+if(localStorage.getItem('de5002fp-instructor')==='1'){document.body.classList.add('instructor');tog.textContent='Instructor view: on';tog.setAttribute('aria-pressed','true')}
+tog.addEventListener('click',()=>localStorage.setItem('de5002fp-instructor',document.body.classList.contains('instructor')?'1':'0'));
+buildNav();render();
+</script>
+</body>
+</html>
