@@ -39,10 +39,10 @@ Weightings: Practical Test 50% + Project 40% + Behavioural 10% = 100%. Marker-to
 
 ## 2. Project (15 hrs, 40%, C1→C3) — `assessment/project_brief.md`
 
-**Brief — choose ONE:**
-- **Option A — HDB Resale Fairness Audit:** prep data.gov.sg resale data; audit price-relevant representation by town/flat type; split, augment, and deliver an ML-ready dataset for a price model.
-- **Option B — SME Loan Approval Prep:** German Credit-style lending data; bias audit on approval by applicant group; leakage-safe prep for a default model.
-- **Option C — Hospital Readmission Prep:** synthetic SingHealth-style data; sensitive-attribute handling (age, ethnicity proxy); ML-ready dataset for readmission prediction.
+**Brief — choose ONE (all real data.gov.sg datasets; full teenager-friendly brief in `project_brief.md`):**
+- **Option A — HDB Resale Price Prep:** *Resale Flat Prices* (data.gov.sg) — prep for a price model; audit town/flat-type representation and fairness.
+- **Option B — Transport Demand Prep:** *Passenger Volume by Train Station* (data.gov.sg, LTA) — time-series prep for a demand model; fairness across lines and stations.
+- **Option C — Energy & Household Prep:** *Household Electricity Consumption by Town* (data.gov.sg, EMA) — prep for a consumption model; aggregation bias across towns and dwelling types.
 
 **Milestones (gates at supervised studio sessions):**
 - **25% (S38):** cleaned + typed dataset, prep-decisions table.

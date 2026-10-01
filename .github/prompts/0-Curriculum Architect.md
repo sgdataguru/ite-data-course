@@ -17,6 +17,38 @@ At the very end, **Agent 6** takes everything the previous five agents produced 
 
 ---
 
+## MASTER FOLDER STRUCTURE — week-based (all agents must follow)
+
+All course materials are organised by week, not by competency or agent. Every agent writes its deliverables into the week folder that matches the schedule:
+
+```
+course/
+├── weeks/
+│   ├── W01/                     # Week 1: S01–S04 (C1)
+│   │   ├── theory/             # Agent 2: S01, S03 concept notes
+│   │   ├── labs/               # Agent 3: L01, L02 (starter/ + solution/ pairs)
+│   │   └── ai_assist/          # Agent 4: W01_L01_overlay.md, W01_L02_overlay.md
+│   ├── W02/                     # Week 2: S05–S09 (C1)
+│   ├── ...
+│   ├── W09/                     # Week 9: S33–S35 (Revision)
+│   ├── W10/                     # Week 10: S36–S38 (Mock, Practical Test, Studio 1)
+│   │   └── assessment/         # Agent 5: mock + practical test papers
+│   ├── W11/                     # Week 11: S39–S40 (Project studios 2–3)
+│   └── W12/                     # Week 12: S41 (Studio 4 + presentations)
+├── assessment/                  # Agent 5: cross-week assessment pack (rubrics, policies, project brief)
+├── ai_assist/                   # Agent 4: cross-week items (tool policy, M1–M3, consolidated ledger)
+├── sessions.json                # Agent 1
+├── schedule.md                  # Agent 1 (the week table is the single source of truth)
+└── course_portal.html           # Agent 6
+```
+
+**Rules:**
+- The week table in `schedule.md` is the single source of truth for what goes in each week folder.
+- Cross-cutting items that span weeks (tool policy, rubrics, reading list, the ledger) live at the top level; everything else lives in its week.
+- Agent 6's portal must present materials grouped by week (Week 1 → Week 12), matching this structure.
+
+---
+
 ## SHARED BRIEF — read first, every agent
 
 **Module code:** DE5002FP
