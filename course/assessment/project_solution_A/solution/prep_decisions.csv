@@ -1,6 +1,0 @@
-column,treatment,why
-resale_price,string -> float (strip $ and comma),models need numbers; strings cannot enter maths
-sale_date,parse to datetime; derive year/month later if needed,mixed formats break naive parsing; dates become features
-floor_area_sqm,outliers (9999/-50/0/400/250) -> NaN -> median impute,imputing BEFORE removing outliers corrupts the median
-storey,median impute (5 NaNs),"<1% missing, roughly symmetric"
-floor_area_sqm.1,dropped,export artefact; different name so duplicated() misses it
