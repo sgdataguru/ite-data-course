@@ -76,3 +76,4 @@ courses/<slug>/
 ## Other files
 
 - [.github/prompts/00-Design the Webpage](.github/prompts/00-Design%20the%20Webpage%20): a standalone prompt for designing and building a web page. It is not part of the pipeline.
+# ss-course-work-
